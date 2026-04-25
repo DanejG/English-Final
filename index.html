@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="A concise, practical guide to writing clean code: clarity, simplicity, and maintainability."
+    />
+    <title>Clean Code Writing Guide</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="#top" aria-label="Clean Code Writing Guide home">
+          <span class="brand-mark" aria-hidden="true">CC</span>
+          <span class="brand-text">Clean Code</span>
+        </a>
+
+        <nav class="nav" aria-label="Primary">
+          <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="navMenu">
+            Menu
+          </button>
+          <div class="nav-menu" id="navMenu">
+            <a class="nav-link" href="#principles">Principles</a>
+            <a class="nav-link" href="#examples">Examples</a>
+            <a class="nav-link" href="#checklist">Checklist</a>
+            <a class="nav-link" href="#resources">Resources</a>
+          </div>
+        </nav>
+
+        <div class="header-actions">
+          <button class="button button-ghost" id="themeToggle" type="button">
+            Toggle theme
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="hero" id="top">
+        <div class="container hero-grid">
+          <div class="hero-copy">
+            <p class="eyebrow">Writing that lasts</p>
+            <h1>Clean code is code that reads like a clear explanation.</h1>
+            <p class="lead">
+              This page is a practical guide to writing code that teammates can understand quickly, change safely,
+              and trust over time.
+            </p>
+            <div class="hero-actions">
+              <a class="button button-primary" href="#principles">Start with principles</a>
+              <a class="button button-secondary" href="#examples">See before/after</a>
+            </div>
+
+            <div class="hero-stats" role="list">
+              <div class="stat" role="listitem">
+                <div class="stat-number">Clarity</div>
+                <div class="stat-label">Reads like prose</div>
+              </div>
+              <div class="stat" role="listitem">
+                <div class="stat-number">Simplicity</div>
+                <div class="stat-label">Less to remember</div>
+              </div>
+              <div class="stat" role="listitem">
+                <div class="stat-number">Safety</div>
+                <div class="stat-label">Easy to change</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-card" aria-label="Quick clean code rules">
+            <div class="card">
+              <div class="card-header">
+                <h2 class="card-title">Quick rules</h2>
+                <p class="card-subtitle">If you only remember 6 things.</p>
+              </div>
+              <ol class="rules">
+                <li><strong>Name</strong> things so you rarely need comments.</li>
+                <li><strong>Keep</strong> functions small and single-purpose.</li>
+                <li><strong>Prefer</strong> clear flow over clever tricks.</li>
+                <li><strong>Reduce</strong> duplication: one idea, one place.</li>
+                <li><strong>Handle</strong> errors early and explicitly.</li>
+                <li><strong>Write</strong> tests for behavior, not implementation.</li>
+              </ol>
+              <div class="card-footer">
+                <button class="button button-tertiary" id="copyChecklist" type="button">
+                  Copy checklist
+                </button>
+                <p class="hint" id="copyHint" aria-live="polite"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="principles">
+        <div class="container">
+          <div class="section-head">
+            <h2>Principles that scale</h2>
+            <p>
+              Clean code is less about style and more about reducing reader effort.
+              These principles work in any language.
+            </p>
+          </div>
+
+          <div class="grid cards">
+            <article class="card">
+              <h3>Make intent obvious</h3>
+              <p>
+                Readers should understand <em>why</em> something exists at a glance.
+                Use specific names, small functions, and clear data shapes.
+              </p>
+              <ul class="bullets">
+                <li>Prefer <code>isExpired</code> over <code>flag</code></li>
+                <li>Make units explicit: <code>timeoutMs</code></li>
+                <li>Let types/structures tell the story</li>
+              </ul>
+            </article>
+
+            <article class="card">
+              <h3>Keep complexity local</h3>
+              <p>
+                Complex logic is unavoidable sometimes. Keep it boxed-in, well named, and tested so it doesn’t leak.
+              </p>
+              <ul class="bullets">
+                <li>Extract helpers with meaningful names</li>
+                <li>Prefer pure functions for tricky logic</li>
+                <li>Minimize hidden shared state</li>
+              </ul>
+            </article>
+
+            <article class="card">
+              <h3>Optimize for change</h3>
+              <p>
+                Most time is spent modifying existing code. Clean code makes change low-risk by being easy to reason about.
+              </p>
+              <ul class="bullets">
+                <li>Reduce duplication</li>
+                <li>Design small interfaces</li>
+                <li>Keep “setup” separate from “work”</li>
+              </ul>
+            </article>
+
+            <article class="card">
+              <h3>Errors are part of the API</h3>
+              <p>
+                Defensive code clarifies what can go wrong. Handle failures early, close to the source, with useful messages.
+              </p>
+              <ul class="bullets">
+                <li>Validate inputs at boundaries</li>
+                <li>Return/throw explicit errors</li>
+                <li>Prefer guard clauses</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-alt" id="examples">
+        <div class="container">
+          <div class="section-head">
+            <h2>Before / After examples</h2>
+            <p>Toggle examples to see the same idea written with less mental overhead.</p>
+          </div>
+
+          <div class="example">
+            <div class="example-head">
+              <h3>Example 1: naming + guard clauses</h3>
+              <div class="segmented" role="group" aria-label="Example 1 view toggle">
+                <button class="segmented-button is-active" type="button" data-example="ex1" data-view="before">
+                  Before
+                </button>
+                <button class="segmented-button" type="button" data-example="ex1" data-view="after">
+                  After
+                </button>
+              </div>
+            </div>
+
+            <pre class="code" data-example="ex1" data-view="before"><code>function f(u) {
+  if (!u) return false;
+  if (u.a && u.b && u.c) {
+    if (u.t && Date.now() - u.t &lt; 86400000) return true;
+  }
+  return false;
+}</code></pre>
+
+            <pre class="code is-hidden" data-example="ex1" data-view="after"><code>const ONE_DAY_MS = 24 * 60 * 60 * 1000;
+
+function hasValidSession(user) {
+  if (!user) return false;
+  if (!user.account || !user.profile || !user.permissions) return false;
+  if (!user.lastLoginAt) return false;
+
+  const sessionAgeMs = Date.now() - user.lastLoginAt;
+  return sessionAgeMs &lt; ONE_DAY_MS;
+}</code></pre>
+            <p class="example-note">
+              Cleaner code often adds a few lines but removes confusion: clearer names, explicit units, and early exits.
+            </p>
+          </div>
+
+          <div class="example">
+            <div class="example-head">
+              <h3>Example 2: separate “choose” from “do”</h3>
+              <div class="segmented" role="group" aria-label="Example 2 view toggle">
+                <button class="segmented-button is-active" type="button" data-example="ex2" data-view="before">
+                  Before
+                </button>
+                <button class="segmented-button" type="button" data-example="ex2" data-view="after">
+                  After
+                </button>
+              </div>
+            </div>
+
+            <pre class="code" data-example="ex2" data-view="before"><code>function ship(order, customer) {
+  let cost = 0;
+  if (customer.vip) cost = 0;
+  else if (order.total &gt; 50) cost = 0;
+  else if (order.total &gt; 25) cost = 4.99;
+  else cost = 7.99;
+
+  send(order, cost);
+}</code></pre>
+
+            <pre class="code is-hidden" data-example="ex2" data-view="after"><code>function shippingCostFor({ total }, { isVip }) {
+  if (isVip) return 0;
+  if (total &gt; 50) return 0;
+  if (total &gt; 25) return 4.99;
+  return 7.99;
+}
+
+function ship(order, customer) {
+  const cost = shippingCostFor(order, { isVip: customer.vip });
+  send(order, cost);
+}</code></pre>
+
+            <p class="example-note">
+              By extracting the decision into a pure function, you can test it easily and keep the “shipping” action simple.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="checklist">
+        <div class="container">
+          <div class="section-head">
+            <h2>A clean code checklist</h2>
+            <p>Use this for reviews or right before you commit.</p>
+          </div>
+
+          <div class="checklist">
+            <label class="check">
+              <input type="checkbox" />
+              <span><strong>Naming:</strong> functions/variables say what they mean (no guessing).</span>
+            </label>
+            <label class="check">
+              <input type="checkbox" />
+              <span><strong>Size:</strong> functions are small, focused, and easy to test.</span>
+            </label>
+            <label class="check">
+              <input type="checkbox" />
+              <span><strong>Duplication:</strong> repeated logic is extracted or centralized.</span>
+            </label>
+            <label class="check">
+              <input type="checkbox" />
+              <span><strong>Flow:</strong> guard clauses reduce nesting; happy path is obvious.</span>
+            </label>
+            <label class="check">
+              <input type="checkbox" />
+              <span><strong>Boundaries:</strong> inputs are validated at the edges; errors are explicit.</span>
+            </label>
+            <label class="check">
+              <input type="checkbox" />
+              <span><strong>Tests:</strong> critical behavior is covered with readable tests.</span>
+            </label>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-alt" id="resources">
+        <div class="container">
+          <div class="section-head">
+            <h2>Resources</h2>
+            <p>Good references if you want to go deeper.</p>
+          </div>
+
+          <div class="grid resources">
+            <a class="resource card" href="https://martinfowler.com/" target="_blank" rel="noreferrer">
+              <h3>Martin Fowler</h3>
+              <p>Refactoring, design, and pragmatic engineering essays.</p>
+            </a>
+            <a class="resource card" href="https://refactoring.guru/" target="_blank" rel="noreferrer">
+              <h3>Refactoring.Guru</h3>
+              <p>Patterns, smells, and refactoring steps with examples.</p>
+            </a>
+            <a class="resource card" href="https://testingjavascript.com/" target="_blank" rel="noreferrer">
+              <h3>Testing principles</h3>
+              <p>Focus on behavior and confidence instead of implementation details.</p>
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <p>Built for an English final: a clean, readable, one-page guide.</p>
+        <p class="muted">
+          Tip: In presentations, use the checklist section as your “main argument” and the examples as evidence.
+        </p>
+      </div>
+    </footer>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
